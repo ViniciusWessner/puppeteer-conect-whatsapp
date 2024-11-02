@@ -4,5 +4,5 @@ Este projeto utiliza Puppeteer, uma biblioteca para controlar o Chrome ou Chromi
 
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <img src="/assets/ia.mp4" alt="Menu" width="900">
+    <img src="/assets/ia.gif" alt="Menu" width="900">
 </div>
