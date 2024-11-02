@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsCode</title>
+  <link rel="stylesheet" href="style.css"> <!-- Incluindo o arquivo CSS -->
+</head>
+<body>
+  <div id="phoneFormContainer">
+    <h2>WhatsCode</h2>
+    
+    <form id="phoneForm">
+      <label for="phoneNumber">Insira o numero de celular:</label>
+      <input type="text" id="phoneNumber" required>
+      <button type="submit">Receber código</button>
+    </form>
+
+    <p id="codeOutput"></p>
+  </div>
+
+  <script>
+    document.getElementById("phoneForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const phoneNumber = document.getElementById("phoneNumber").value;
+      document.getElementById("codeOutput").textContent = "Estamos gerando o código...";
+
+      const response = await fetch("/get-code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ number: phoneNumber }),
+      });
+
+      const result = await response.json();
+      document.getElementById("codeOutput").textContent = result.code
+        ? `Código gerado: ${result.code}`
+        : "Não foi possível gerar o código, estamos tentando novamente, aguarde por gentileza";
+    });
+  </script>
+</body>
+</html>
